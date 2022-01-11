@@ -1,44 +1,26 @@
-<div style="background-color: chartreuse;">
-    <i class="fas fa-plus"></i>
-    <p>Agregar artículo</p>
-    <div class="card-group">
-        <div class="card">
-            <img class="card-img-top" src="https://www.ahoraelpueblo.bo/wp-content/uploads/2021/12/cultu.jpeg"
-                alt="Card image cap" width="auto" height="20px">
-            <div class="card-body">
+<div style="display: flex; flex-direction: column; align-items: center;">
+    <div style="display: flex;">
+        <button><i class="fas fa-plus"></i></button>
+        <input type="text" placeholder="Agregar artículo">
+    </div>
+    <div class="card-group" style="display: flex;">
+        <div style="display: flex; padding: 5px;">
+            <img src="https://www.ahoraelpueblo.bo/wp-content/uploads/2021/12/cultu.jpeg" alt="Card image cap"
+                width="auto" height="20px" style="margin: 5px;">
+            <div>
                 <h5 class="card-title">Card title</h5>
             </div>
         </div>
     </div>
 </div>
-<div>
-    <div style="background-color: cadetblue;">
-        <i class="fas fa-list" style="color: blue;"></i>
-    </div>
-    <h3>Su lista está vacía</h3>
-    <p>Comienza a agregar los artículos que necesitas para que no se te olvide nada. También puedes compartir las
-        listas
-        de compras con otros usuarios.</p>
-</div>
-<!-- Sidebar -->
-<div>
-    <div>
-        <h3>Lista principal</h3><i class="fas fa-question-circle"></i>
-    </div>
-    <div>
-        <h4>Lista de Shopping</h4>
-        <p>0 artículos</p><i class="fas fa-solid fa-angle-down"></i>
-    </div>
-    <div><button>Crear lista nueva</button></div>
-    <div>
-        <div>
-            <i class="fas fa-comment"></i>
-            <h4>Enviar comentarios</h4>
+<ng-container *ngIf="true">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <div
+            style="display: flex; justify-content: center; align-items: center; background-color: black; border-radius: 100px; margin-top: 50px; margin-bottom: 30px; padding: 50px; height: 200px; width: 200px;">
+            <i class="fas fa-list" style="color: white; font-size: 75px;"></i>
         </div>
-        <div>
-            <i class="fas fa-question-circle"></i>
-            <h4>Ayuda</h4>
-        </div>
+        <h3 style="margin-bottom: 25px;">Su lista está vacía</h3>
+        <p style="width: 300px; text-align: center;">Comienza a agregar los artículos que necesitas para que no se te olvide nada. También puedes compartir las
+            listas de compras con otros usuarios.</p>
     </div>
-    <p><a href="">Privacidad</a> • <a href="">Condiciones</a></p>
-</div>
+</ng-container>
