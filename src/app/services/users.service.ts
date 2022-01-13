@@ -8,7 +8,7 @@ import {User} from "../models/user";
 export class UsersService {
 
   selectedUser?:User;
-  readonly URI_API = 'http://localhost:3000'//TODO
+  readonly URI_API = "http://localhost/shoplist:27017/"   //TODO
 
   constructor(private http:HttpClient) {
     this.selectedUser = new User()
