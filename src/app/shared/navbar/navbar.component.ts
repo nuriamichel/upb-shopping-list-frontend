@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
 
   getUser(){
     console.log("compartido")
-    this.usersService.getUser()
+    this.usersService.test()
       .subscribe(res => {
         console.log(res)
       })

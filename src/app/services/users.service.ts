@@ -7,15 +7,14 @@ import {User} from "../models/user";
 })
 export class UsersService {
 
-  selectedUser?:User;
-  readonly URI_API = "/~shoplist"   //TODO
+  url='http://skynet.lp.upb.edu/~shoplist/contact/'; // disponer url de su servidor que tiene las páginas PHP
 
-  constructor(private http:HttpClient) {
-    this.selectedUser = new User()
+  constructor(private http: HttpClient) { }
+
+  test() {
+    return this.http.get(`${this.url}contact.php`);
   }
 
-  getUser(){
-    return this.http.get(this.URI_API);
-  }
+
 
 }
