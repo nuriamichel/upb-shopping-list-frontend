@@ -14,15 +14,15 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getUser(){
+  setUser(){
     console.log("compartido")
-    this.usersService.test()
+    this.usersService.insert()
       .subscribe(res => {
         console.log(res)
       })
 
   }
   share() {
-    this.getUser()
+    this.setUser()
   }
 }
