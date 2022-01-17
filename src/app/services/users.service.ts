@@ -7,7 +7,7 @@ import {User} from "../models/user";
 })
 export class UsersService {
 
-  url='http://skynet.lp.upb.edu/~shoplist/server/'; // disponer url de su servidor que tiene las páginas PHP
+  url='http://skynet.lp.upb.edu/~shoplist/upb-shopping-list-backend/server/'; // disponer url de su servidor que tiene las páginas PHP
 
   constructor(private http: HttpClient) { }
 
