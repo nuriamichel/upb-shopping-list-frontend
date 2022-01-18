@@ -16,7 +16,7 @@ export class UsersService {
   }
 
   addUser(user: User) {
-    return this.http.post(`${this.url}/addUser.php`, user);
+    return this.http.post(`${this.url}addUser.php`, user);
   }
 
 
