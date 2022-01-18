@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from "../../services/users.service";
 import { SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +12,7 @@ import { SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-soc
 export class NavbarComponent implements OnInit {
   socialUser?: SocialUser;
   isLoggedin?: boolean;
+  userMod?:User;
   constructor(private usersService:UsersService,
               private socialAuthService: SocialAuthService) { }
 
@@ -19,6 +21,10 @@ export class NavbarComponent implements OnInit {
       this.socialUser = user;
       this.isLoggedin = (user != null);
       console.log(this.socialUser);
+      this.userMod = new User(Number(this.socialUser.id), this.socialUser.email, this.socialUser.photoUrl, this.socialUser.firstName)
+      if(this.isLoggedin){
+        this.usersService.addUser(this.userMod)
+      }
     });
     }
   loginWithGoogle(): void {
@@ -29,6 +35,15 @@ export class NavbarComponent implements OnInit {
     this.socialAuthService.signOut();
   }
   setUser(){
+    console.log("compartido")
+    this.usersService.insert()
+      .subscribe(res => {
+        console.log(res)
+      })
+
+  }
+
+  addUser(){
     console.log("compartido")
     this.usersService.insert()
       .subscribe(res => {

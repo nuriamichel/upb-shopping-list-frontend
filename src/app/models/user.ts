@@ -1,9 +1,13 @@
 export class User {
-  constructor(_id='', email='') {
-    this._id = _id
+  constructor(id= 0, email='', photo='',firstname='') {
+    this._id = id
     this.email = email
+    this.photo = photo
+    this.firstname = firstname
   }
 
-  _id!:string;
+  _id!:number;
   email!:string;
+  photo!:string;
+  firstname!:string;
 }

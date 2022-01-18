@@ -15,6 +15,10 @@ export class UsersService {
     return this.http.get(`${this.url}insert.php`);
   }
 
+  addUser(user: User) {
+    return this.http.post(`${this.url}/addUser.php`, user);
+  }
+
 
 
 }
