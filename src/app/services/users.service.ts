@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {User} from "../models/user";
+import {Lista} from "../models/lista";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,8 @@ export class UsersService {
     return this.http.post(`${this.url}addUser.php`, user);
   }
 
-
+  addList(list: Lista) {
+    return this.http.post(`${this.url}addList.php`, list);
+  }
 
 }

@@ -9,6 +9,7 @@ import { MainComponent } from './pages/main/main.component';
 import { ShareComponent } from './pages/share/share.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
+import { ListaComponent } from './models/lista/lista.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { GoogleLoginProvider } from 'angularx-social-login';
     NavbarComponent,
     MainComponent,
     ShareComponent,
+    ListaComponent,
 
   ],
   imports: [

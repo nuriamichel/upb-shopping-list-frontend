@@ -4,6 +4,7 @@ import { UsersService } from "../../services/users.service";
 
 import { SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
 import { User } from "../../models/user";
+import {Lista} from "../../models/lista";
 
 @Component({
   selector: 'app-navbar',
@@ -31,6 +32,9 @@ export class NavbarComponent implements OnInit {
         this.usersService.addUser(this.userMod)
           .subscribe(res => {
             console.log(res)
+            if(res == 'New record created successfully'){
+              this.usersService.addList(new Lista('Lista de la compras', this.userMod?.email, true, false))
+            }
           })
       }
     });
