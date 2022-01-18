@@ -7,15 +7,18 @@ import {User} from "../models/user";
 })
 export class UsersService {
 
-  selectedUser?:User;
-  readonly URI_API = "/~shoplist"   //TODO
+  url='http://skynet.lp.upb.edu/~shoplist/upb-shopping-list-backend/server/'; // disponer url de su servidor que tiene las páginas PHP
 
-  constructor(private http:HttpClient) {
-    this.selectedUser = new User()
+  constructor(private http: HttpClient) { }
+
+  insert() {
+    return this.http.get(`${this.url}insert.php`);
   }
 
-  getUser(){
-    return this.http.get(this.URI_API);
+  addUser(user: User) {
+    return this.http.post(`${this.url}addUser.php`, user);
   }
+
+
 
 }
