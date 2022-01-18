@@ -55,18 +55,8 @@ export class NavbarComponent implements OnInit {
     this._sidebarService.sidebarAction$.next(true)
   }
 
-  getUser() {
-    /*addUser(){
-      console.log("compartido")
-      this.usersService.insert()
-        .subscribe(res => {
-          console.log(res)
-        })
 
-    }
-    share() {
-      this.setUser()}*/
-  }
+
   share() {
     this.setUser()}
 }
