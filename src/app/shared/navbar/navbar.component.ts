@@ -25,14 +25,15 @@ export class NavbarComponent implements OnInit {
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
       this.isLoggedin = (user != null);
-      console.log(this.socialUser);
+
       this.userMod = new User(Number(this.socialUser.id), this.socialUser.email, this.socialUser.photoUrl, this.socialUser.firstName)
       if (this.isLoggedin) {
-        console.log(this.userMod)
+
         this.usersService.addUser(this.userMod)
           .subscribe(res => {
             console.log(res)
-            if(res == 'New record created successfully'){
+            if(res.toString() == 'New record created successfully'){
+              console.log(new Lista('Lista de la compras', this.userMod?.email, true, false))
               this.usersService.addList(new Lista('Lista de la compras', this.userMod?.email, true, false))
             }
           })
