@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {UsersService} from "../../services/users.service";
+import { SidebarService } from 'src/app/services/sidebar.service';
+import { UsersService } from "../../services/users.service";
 
 @Component({
   selector: 'app-navbar',
@@ -9,12 +10,16 @@ import {UsersService} from "../../services/users.service";
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private usersService:UsersService) { }
+  constructor(private usersService: UsersService, private _sidebarService: SidebarService) { }
 
   ngOnInit(): void {
   }
 
-  getUser(){
+  sendSideBarAction() {
+    this._sidebarService.sidebarAction$.next(true)
+  }
+
+  getUser() {
     console.log("compartido")
     this.usersService.getUser()
       .subscribe(res => {

@@ -1,0 +1,13 @@
+:host {
+    position: absolute;
+    width: 400px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 25px;
+    height: 719px;
+    gap: 10px;
+    transform: translateX(-400px);
+    transition: transform 0.5s ease-in-out;
+}
