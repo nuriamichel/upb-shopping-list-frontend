@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit {
         this.usersService.addUser(this.userMod)
           .subscribe(res => {
             console.log(res)
-            if(res.toString() == 'New record created successfully'){
+            if(res == 1){
               console.log(new Lista('Lista de la compras', this.userMod?.email, true, false))
               this.usersService.addList(new Lista('Lista de la compras', this.userMod?.email, true, false))
             }
