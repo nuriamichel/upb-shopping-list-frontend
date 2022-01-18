@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
       console.log(this.socialUser);
       this.userMod = new User(Number(this.socialUser.id), this.socialUser.email, this.socialUser.photoUrl, this.socialUser.firstName)
       if(this.isLoggedin){
+        console.log(this.userMod)
         this.usersService.addUser(this.userMod)
           .subscribe(res => {
             console.log(res)
