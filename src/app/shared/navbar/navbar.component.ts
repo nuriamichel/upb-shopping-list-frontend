@@ -52,6 +52,10 @@ export class NavbarComponent implements OnInit {
 
   }
 
+  addList(){
+    this.usersService.addList(new Lista('test', 'test', false, false))
+  }
+
   sendSideBarAction() {
     this._sidebarService.sidebarAction$.next(true)
   }
@@ -59,5 +63,5 @@ export class NavbarComponent implements OnInit {
 
 
   share() {
-    this.setUser()}
+    this.addList()}
 }
