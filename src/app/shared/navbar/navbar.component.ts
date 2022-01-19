@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit {
   socialUser?: SocialUser;
   isLoggedin?: boolean;
   userMod?: User;
+  listMod?:Lista
   constructor(private usersService: UsersService,
     private socialAuthService: SocialAuthService, private _sidebarService: SidebarService) { }
 
@@ -53,8 +54,12 @@ export class NavbarComponent implements OnInit {
   }
 
   addList(){
-    console.log('lista')
-    this.usersService.addList(new Lista('test', 'test', false, false))
+    this.listMod = new Lista('test', 'test', false, false)
+    console.log(this.listMod)
+    this.usersService.addList(this.listMod)
+      .subscribe(res => {
+        console.log(res)
+      })
   }
 
   sendSideBarAction() {
