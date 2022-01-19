@@ -53,6 +53,7 @@ export class NavbarComponent implements OnInit {
   }
 
   addList(){
+    console.log('lista')
     this.usersService.addList(new Lista('test', 'test', false, false))
   }
 
