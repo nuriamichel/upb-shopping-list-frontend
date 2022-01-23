@@ -1,0 +1,13 @@
+:host {
+    overflow: hidden;
+}
+
+.container-main {
+    height: calc(100% - 70px);
+    position: relative;
+}
+
+.pages {
+    width: 100%;
+    overflow-y: auto;
+}

@@ -1,29 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'
-
+import { HttpClientModule } from '@angular/common/http'
 import { AppComponent } from './app.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { MainComponent } from './pages/main/main.component';
-import { ShareComponent } from './pages/share/share.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SidebarComponent,
-    NavbarComponent,
-    MainComponent,
-    ShareComponent,
-
+    AppComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    SocialLoginModule
+    SocialLoginModule,
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
   providers: [
     {

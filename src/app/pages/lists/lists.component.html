@@ -1,0 +1,19 @@
+<div [formGroup]="formList">
+    <!--div (btnClick)="sendForm()">
+        <button style="background-color: black; border: black; height: 50px; width: 50px;">
+            <i class="fas fa-plus" style="color: white; font-size: 25px;"></i>
+        </button>
+    </div-->
+
+    <app-button [buttonCnf]="{text:'Aceptar',color:'orange'}" (btnClick)="sendForm()"> </app-button>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Agregar artículo</mat-label>
+        <input formControlName="item" matInput placeholder="Agregar artículo">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Precio</mat-label>
+        <input formControlName="price" matInput placeholder="Precio">
+
+    </mat-form-field>
+</div>
