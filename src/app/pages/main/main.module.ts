@@ -5,6 +5,7 @@ import { MainComponent } from './main.component';
 import { NavbarModule } from 'src/app/shared/navbar/navbar.module';
 import { SidebarModule } from 'src/app/shared/sidebar/sidebar.module';
 
+
 const routes: Routes = [
   {
     path: '',

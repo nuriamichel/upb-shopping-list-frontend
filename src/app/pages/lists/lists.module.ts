@@ -4,7 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListsComponent } from './lists.component';
 import { FormModule } from 'src/app/shared/form/form.module';
 import { ButtonModule } from 'src/app/shared/button/button.module';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { FlexLayoutModule } from "@angular/flex-layout";
 const routes: Routes = [
   {
     path: '',
@@ -18,7 +20,10 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     FormModule,
-    ButtonModule
+    ButtonModule,
+    MatButtonModule,
+    MatIconModule,
+    FlexLayoutModule
   ]
 })
 export class ListsModule { }
