@@ -1,17 +1,40 @@
-<div> 
-    <div>
-        <h3>Lista principal</h3>
-    </div>
-    <div style="display: flex; justify-content: space-between;">
+<div>
+    <ng-container *ngFor="let lista of listas; let i=index">
+        <ng-container *ngIf="i==0">
+            <div style="padding-bottom: 20px;">
+                <h3>Lista principal</h3>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <div>
+                    <h4>{{lista.nombre}}</h4>
+                    <p>{{lista.cantItems}} artículos</p>
+                </div>
+                <div>
+                    <i class="fas fa-solid fa-angle-down"></i>
+                </div>
+            </div>
+            <ng-container *ngIf="listas.length>1">
+                <div style="padding-top: 20px; padding-bottom: 20px;">
+                    <h3>Otras listas</h3>
+                </div>
+            </ng-container>
+        </ng-container>
         <div>
-            <h4>Lista de Shopping</h4>
-            <p>0 artículos</p>
+            <ng-container *ngIf="i>0">
+
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="display: flex; flex-direction: column; gap: 2px;">
+                        <h4>{{lista.nombre}}</h4>
+                        <p>{{lista.cantItems}} artículos</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-solid fa-angle-down"></i>
+                    </div>
+                </div>
+            </ng-container>
         </div>
-        <div>
-            <i class="fas fa-solid fa-angle-down"></i>
-        </div>
-    </div>
-    <div style="align-self: center;">
-        <h4>Crear lista nueva</h4>
-    </div>
+    </ng-container>
+</div>
+<div style="align-self: center; padding: 25px; cursor: pointer;" (click)="openDialog()">
+    <h4>Crear lista nueva</h4>
 </div>

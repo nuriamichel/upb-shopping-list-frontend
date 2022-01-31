@@ -7,6 +7,10 @@ import { ButtonModule } from 'src/app/shared/button/button.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { MatTableModule } from "@angular/material/table";
+//import { MatButtonToggleModule } from '@angular/material';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 const routes: Routes = [
   {
     path: '',
@@ -23,7 +27,9 @@ const routes: Routes = [
     ButtonModule,
     MatButtonModule,
     MatIconModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatTableModule,
+    MatSlideToggleModule
   ]
 })
 export class ListsModule { }

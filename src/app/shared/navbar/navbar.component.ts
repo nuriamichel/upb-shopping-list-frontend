@@ -13,7 +13,6 @@ import { User } from "../../models/user";
 })
 export class NavbarComponent implements OnInit {
 
-
   socialUser?: SocialUser;
   isLoggedin?: boolean;
   userMod?: User;
@@ -68,5 +67,6 @@ export class NavbarComponent implements OnInit {
       this.setUser()}*/
   }
   share() {
-    this.setUser()}
+    this.setUser()
+  }
 }
