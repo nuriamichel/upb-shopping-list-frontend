@@ -26,10 +26,21 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
+      localStorage.setItem('mail',this.socialUser.email)
+      localStorage.setItem('lista','Lista de compras')
+      this.usersService.getActualList(localStorage.getItem('mail')!,localStorage.getItem('lista')!)
+        .subscribe(res => {
+          console.log(res)
+          localStorage.setItem('numList',res.toString())
+          console.log(localStorage.getItem('numList')!)
+
+        })
+
       this.isLoggedin = (user != null);
       console.log(this.socialUser);
       this.userMod = new User(Number(this.socialUser.id), this.socialUser.email, this.socialUser.photoUrl, this.socialUser.firstName)
       if (this.isLoggedin) {
+        localStorage.setItem('logged','true')
         console.log(this.userMod)
         this.usersService.addUser(this.userMod)
           .subscribe(res => {
