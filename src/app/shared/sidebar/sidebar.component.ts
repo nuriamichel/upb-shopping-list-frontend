@@ -110,6 +110,7 @@ export class SidebarComponent implements OnInit {
 
   editarLL(i: number) {
     console.log('EDITAR LISTA')
+
     let dialogRef = this.dialog.open(EditDialogComponent, {
       width: '500px',
       data: { name2: this.listas[i].nombre, animal2: this.animal2 }
@@ -130,7 +131,7 @@ export class SidebarComponent implements OnInit {
   }
 
 
-  getListaPrincipal(mail:string){
+  async getListaPrincipal(mail:string){
     this.usersService.getLists(mail)
       .subscribe(res => {
         console.log(res)
@@ -141,7 +142,7 @@ export class SidebarComponent implements OnInit {
       })
   }
 
-  getListOther(mail:string){
+  async getListOther(mail:string){
     this.usersService.getListsOther(mail)
       .subscribe(res => {
         console.log(res)
