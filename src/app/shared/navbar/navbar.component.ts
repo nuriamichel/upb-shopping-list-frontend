@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {SidebarService} from 'src/app/services/sidebar.service';
-import {UsersService} from "../../services/users.service";
+import { Component, OnInit } from '@angular/core';
+import { SidebarService } from 'src/app/services/sidebar.service';
+import { UsersService } from "../../services/users.service";
 
-import {SocialAuthService, GoogleLoginProvider, SocialUser} from 'angularx-social-login';
-import {User} from "../../models/user";
+import { SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
+import { User } from "../../models/user";
 
 @Component({
   selector: 'app-navbar',
@@ -13,12 +13,14 @@ import {User} from "../../models/user";
 })
 export class NavbarComponent implements OnInit {
 
+  title: string = "Lista de Shopping";
+
   socialUser?: SocialUser;
   isLoggedin?: boolean;
   userMod?: User;
 
   constructor(private usersService: UsersService,
-              private socialAuthService: SocialAuthService, private _sidebarService: SidebarService) {
+    private socialAuthService: SocialAuthService, private _sidebarService: SidebarService) {
   }
 
   ngOnInit(): void {

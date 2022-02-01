@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatFormField } from '@angular/material/form-field';
 import { DialogComponent } from './dialog/dialog.component';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
+import { Router } from '@angular/router';
 
 
 export interface ListaDeListas {
@@ -49,7 +50,7 @@ export class SidebarComponent implements OnInit {
 
 
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private _router: Router) { }
 
   ngOnInit(): void {
   }
@@ -71,6 +72,7 @@ export class SidebarComponent implements OnInit {
 
   compartirLL(i: number) {
     console.log('COMPARTIR LL')
+    //this._router.navigate(['main/share']);
   }
   principalLL(i: number) {
     console.log('PRINCIPAL LL');
