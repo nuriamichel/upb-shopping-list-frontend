@@ -121,20 +121,28 @@ export class SidebarComponent implements OnInit {
       console.log('The dialog was closed');
       this.animal2 = result;
       console.log(this.animal2)
-      // @ts-ignore
-      this.updateList(this.listaOthers[i].id, this.animal2)
-      this.getListaPrincipal(localStorage.getItem('mail')!)
-      this.getListOther(localStorage.getItem('mail')!)
-      //(i, 1, { nombre: this.animal2, cantItems: this.cItems });
+
+      if (i !=99) {
+        // @ts-ignore
+        this.updateList(this.listaOthers[i].id, this.animal2)
+        this.getListaPrincipal(localStorage.getItem('mail')!)
+        this.getListOther(localStorage.getItem('mail')!)
+        //(i, 1, { nombre: this.animal2, cantItems: this.cItems });
+      }else {
+        // @ts-ignore
+        this.updateList(this.listaPrinc.id, this.animal2)
+        this.getListaPrincipal(localStorage.getItem('mail')!)
+        this.getListOther(localStorage.getItem('mail')!)
+      }
     });
   }
 
   borrarLL(i: number) {
     console.log('BORRAR LL')
-    // @ts-ignore
-    this.delList(this.listaOthers[i].id)
-    this.getListaPrincipal(localStorage.getItem('mail')!)
-    this.getListOther(localStorage.getItem('mail')!)
+      // @ts-ignore
+      this.delList(this.listaOthers[i].id)
+      this.getListaPrincipal(localStorage.getItem('mail')!)
+      this.getListOther(localStorage.getItem('mail')!)
 
   }
 

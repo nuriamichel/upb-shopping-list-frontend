@@ -42,6 +42,9 @@ export class UsersService {
     return this.http.get(`${this.url}updateProd.php`, {params: {prodid: id}});
   }
 
+  updateProdnot(id:number){
+    return this.http.get(`${this.url}updateProdnot.php`, {params: {prodid: id}});
+  }
   getLists(email:string){
     return this.http.get(`${this.url}getListaPrincipal.php`, {params: {email: email}});
   }

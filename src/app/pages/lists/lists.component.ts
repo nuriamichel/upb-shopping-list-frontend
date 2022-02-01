@@ -178,12 +178,21 @@ export class ListsComponent implements OnInit {
       .subscribe(res => {
         console.log(res)
         this.getProducts(localStorage.getItem('mail')!, localStorage.getItem('lista')!)
+        this.getProductsBuyed(localStorage.getItem('mail')!, localStorage.getItem('lista')!)
 
       })
   }
 
   updProduct(id:number){
     this.usersService.updateProd(id)
+      .subscribe(res => {
+        console.log(res)
+        this.getProducts(localStorage.getItem('mail')!, localStorage.getItem('lista')!)
+        this.getProductsBuyed(localStorage.getItem('mail')!, localStorage.getItem('lista')!)
+      })
+  }
+  upProductnot(id:number){
+    this.usersService.updateProdnot(id)
       .subscribe(res => {
         console.log(res)
         this.getProducts(localStorage.getItem('mail')!, localStorage.getItem('lista')!)
@@ -199,15 +208,11 @@ export class ListsComponent implements OnInit {
   }
 
   destachado(index: number) {
-    this.productos.push({
-      nombre: this.productosTachados[index].nombre,
-      precio: this.productosTachados[index].precio
-    });
-    this.productosTachados.splice(index, 1);
-    this.table.renderRows();
-    this.tachadoTable.renderRows();
-    console.log(this.productos)
-    console.log(this.productosTachados)
+    console.log('DESTACHADO');
+
+    console.log(this.listProdTached[index])
+    // @ts-ignore
+    this.upProductnot(this.listProdTached[index].id)
   }
 
   removeAt(index: number) {
@@ -221,10 +226,11 @@ export class ListsComponent implements OnInit {
 
   removeAtTachados(index: number) {
     console.log('borrar prod tachado')
-    this.productosTachados.splice(index, 1);
 
-    this.table.renderRows();
-    this.tachadoTable.renderRows();
+    console.log(this.listProdTached[index])
+    // @ts-ignore
+    this.delProduct(this.listProdTached[index].id)
+
   }
 
 }
