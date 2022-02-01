@@ -6,6 +6,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import {UsersService} from "../../services/users.service";
 import {List} from "../../models/list";
+import { Router } from '@angular/router';
 
 
 export interface ListaDeListas {
@@ -55,7 +56,8 @@ export class SidebarComponent implements OnInit {
 
 
 
-  constructor(private usersService: UsersService,public dialog: MatDialog) { }
+
+  constructor(private usersService: UsersService,public dialog: MatDialog, private _router: Router) { }
 
   ngOnInit(): void {
     this.getListaPrincipal(localStorage.getItem('mail')!)
@@ -78,6 +80,7 @@ export class SidebarComponent implements OnInit {
 
   compartirLL(i: number) {
     console.log('COMPARTIR LL')
+    //this._router.navigate(['main/share']);
   }
   principalLL(i: number) {
     console.log('PRINCIPAL LL');
