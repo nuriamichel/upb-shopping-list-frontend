@@ -52,4 +52,12 @@ export class UsersService {
   addList(email:string, name:string){
     return this.http.get(`${this.url}newList.php`, {params: {email: email, name: name}});
   }
+  updateList(lisid:number, name:string){
+    return this.http.get(`${this.url}updateList.php`, {params: {lisid: lisid, name: name}});
+  }
+
+  delList(id:number){
+    return this.http.get(`${this.url}delList.php`, {params: {lisid: id}});
+  }
+
 }
