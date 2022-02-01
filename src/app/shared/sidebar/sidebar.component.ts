@@ -73,7 +73,10 @@ export class SidebarComponent implements OnInit {
     console.log('COMPARTIR LL')
   }
   principalLL(i: number) {
-    console.log('PRINCIPAL LL')
+    console.log('PRINCIPAL LL');
+    let temp = this.listas[i]
+    this.listas.splice(i, 1);
+    this.listas.unshift(temp)
   }
 
   editarLL(i: number) {
