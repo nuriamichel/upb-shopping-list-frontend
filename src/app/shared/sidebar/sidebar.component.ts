@@ -45,8 +45,8 @@ export class SidebarComponent implements OnInit {
 
   cItems: number = 0;
 
-  listaPrinc!: List
-  listaOthers?: List[] = []
+  listaPrinc?:List
+  listaOthers?:List[]= []
 
   listas: Array<ListaDeListas> = [
     {
@@ -73,6 +73,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem('logged') == "true") {
+
       this.getListaPrincipal(localStorage.getItem('mail')!)
       this.getListOther(localStorage.getItem('mail')!)
     }
@@ -130,6 +131,7 @@ export class SidebarComponent implements OnInit {
 
   editarLL(i: number) {
     console.log('EDITAR LISTA')
+
     let dialogRef = this.dialog.open(EditDialogComponent, {
       width: '500px',
       data: { name2: this.listas[i].nombre, animal2: this.animal2 }
@@ -139,14 +141,21 @@ export class SidebarComponent implements OnInit {
       console.log('The dialog was closed');
       this.animal2 = result;
       console.log(this.animal2)
-      this.listas[i].nombre = this.animal2;
+      // @ts-ignore
+      this.updateList(this.listaOthers[i].id, this.animal2)
+      this.getListaPrincipal(localStorage.getItem('mail')!)
+      this.getListOther(localStorage.getItem('mail')!)
       //(i, 1, { nombre: this.animal2, cantItems: this.cItems });
     });
   }
 
   borrarLL(i: number) {
     console.log('BORRAR LL')
-    this.listas.splice(i, 1);
+    // @ts-ignore
+    this.delList(this.listaOthers[i].id)
+    this.getListaPrincipal(localStorage.getItem('mail')!)
+    this.getListOther(localStorage.getItem('mail')!)
+
   }
 
 
@@ -160,7 +169,7 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  getListaPrincipal(mail: string) {
+  async getListaPrincipal(mail:string){
     this.usersService.getLists(mail)
       .subscribe(res => {
         console.log(res)
@@ -172,7 +181,7 @@ export class SidebarComponent implements OnInit {
       
   }
 
-  getListOther(mail: string) {
+  async getListOther(mail:string){
     this.usersService.getListsOther(mail)
       .subscribe(res => {
         console.log(res)
@@ -181,6 +190,24 @@ export class SidebarComponent implements OnInit {
           // @ts-ignore
           this.listaOthers = res
         }
+
+      })
+  }
+
+  async updateList(lisid:number,name:string){
+    this.usersService.updateList(lisid,name)
+      .subscribe(res => {
+        console.log(res)
+        if (res != null) {
+
+        }
+
+      })
+  }
+  async delList(lisid:number){
+    this.usersService.delList(lisid)
+      .subscribe(res => {
+        console.log(res)
 
       })
   }
