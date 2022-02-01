@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {User} from "../models/user";
+import {Product} from "../models/product";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,11 @@ export class UsersService {
   addUser(user: User) {
     return this.http.post(`${this.url}addUser.php`, user);
   }
+  addProduct(prod: Product) {
+    return this.http.post(`${this.url}addProduct.php`, prod);
+  }
 
-
-
+  getProducts(email:string){
+    return this.http.get(`${this.url}getProducts.php`, {params: {email: email}});
+  }
 }

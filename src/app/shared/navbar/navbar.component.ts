@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { SidebarService } from 'src/app/services/sidebar.service';
-import { UsersService } from "../../services/users.service";
+import {Component, OnInit} from '@angular/core';
+import {SidebarService} from 'src/app/services/sidebar.service';
+import {UsersService} from "../../services/users.service";
 
-import { SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
-import { User } from "../../models/user";
+import {SocialAuthService, GoogleLoginProvider, SocialUser} from 'angularx-social-login';
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-navbar',
@@ -16,8 +16,10 @@ export class NavbarComponent implements OnInit {
   socialUser?: SocialUser;
   isLoggedin?: boolean;
   userMod?: User;
+
   constructor(private usersService: UsersService,
-    private socialAuthService: SocialAuthService, private _sidebarService: SidebarService) { }
+              private socialAuthService: SocialAuthService, private _sidebarService: SidebarService) {
+  }
 
   ngOnInit(): void {
     this.socialAuthService.authState.subscribe((user) => {
@@ -34,6 +36,7 @@ export class NavbarComponent implements OnInit {
       }
     });
   }
+
   loginWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
@@ -41,6 +44,7 @@ export class NavbarComponent implements OnInit {
   logOut(): void {
     this.socialAuthService.signOut();
   }
+
   setUser() {
     console.log("compartido")
     this.usersService.insert()
@@ -66,6 +70,7 @@ export class NavbarComponent implements OnInit {
     share() {
       this.setUser()}*/
   }
+
   share() {
     this.setUser()
   }
