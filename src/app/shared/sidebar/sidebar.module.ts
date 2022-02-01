@@ -1,8 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './sidebar.component';
-import { FormModule } from 'src/app/shared/form/form.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCommonModule } from '@angular/material/core';
+import { DialogModule } from './dialog/dialog.module';
 
 
 
@@ -11,8 +16,14 @@ import { FormModule } from 'src/app/shared/form/form.module';
     SidebarComponent
   ],
   imports: [
+    DialogModule,
     CommonModule,
-    FormModule
+    FormsModule,
+    MatButtonModule,
+    MatCommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   exports: [
     SidebarComponent
