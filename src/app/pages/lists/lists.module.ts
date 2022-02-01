@@ -8,9 +8,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatTableModule } from "@angular/material/table";
+//import { MatCheckboxModule } from "@angular/material";
+
 //import { MatButtonToggleModule } from '@angular/material';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSortModule } from '@angular/material/sort';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -31,7 +34,10 @@ const routes: Routes = [
     FlexLayoutModule,
     MatTableModule,
     MatSlideToggleModule,
-    MatSortModule
+    MatSortModule,
+    ReactiveFormsModule,
+    FormsModule,
+    //MatCheckboxModule
   ]
 })
 export class ListsModule { }

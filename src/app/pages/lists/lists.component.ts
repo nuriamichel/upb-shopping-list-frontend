@@ -1,6 +1,14 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTable } from '@angular/material/table';
+import { FormControl, AbstractControl } from '@angular/forms';
+import { Observable, merge } from 'rxjs';
+
+class Todo {
+  id!: string;
+  description!: string;
+  complete!: boolean;
+}
 
 interface Producto {
   nombre: string;
@@ -52,6 +60,38 @@ export class ListsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  form: FormGroup = new FormGroup({
+    priceUSD: new FormControl(false),
+  });
+
+  priceUSD = this.form.get('priceUSD');
+
+  columns!: string[];
+
+  columnDefinitions = [
+    { def: 'priceUSD', label: 'Mostrar Precio', hide: this.priceUSD?.value }
+  ];
+
+  getDisplayedColumns() {
+    this.columns = this.columnDefinitions.filter(cd => !cd.hide).map(cd => cd.def);
+  }
+
+
+
+  ngAfterViewInit() {
+    /*let o1: Observable<boolean> = this.priceUSD.valueChanges;
+
+    merge(o1).subscribe(v => {
+      this.columnDefinitions[0].hide = this.priceUSD?.value;
+      console.log(this.columnDefinitions);
+
+      this.getDisplayedColumns();
+    });
+
+    this.getDisplayedColumns();*/
+  }
+
 
   showPrice() {
     this.mostrarPrecio = !this.mostrarPrecio;
