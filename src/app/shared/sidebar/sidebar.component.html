@@ -1,36 +1,37 @@
 <div>
-    <ng-container *ngFor="let listO of listaOthers; let i=index">
-        <ng-container *ngIf="true">
+    <ng-container >
+        <ng-container >
             <div style="padding-bottom: 20px;">
                 <h3>Lista principal</h3>
             </div>
             <div style="display: flex; justify-content: space-between;">
-                <div>
-                    <h4>{{listaPrinc.lista.toString()}}</h4>
+                <div  >
+                    <h4>{{listaPrinc.lista}}</h4>
                     <p>{{cItems}} artículos</p>
                 </div>
                 <div>
                     <i class="fas fa-solid fa-angle-down" [matMenuTriggerFor]="menu"></i>
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item (click)="compartirLL(i)">Compartir</button>
-                        <button mat-menu-item (click)="editarLL(i)">Cambiar nombre</button>
-                        <button mat-menu-item (click)="principalLL(i)">Establecer como principal</button>
-                        <button mat-menu-item (click)="borrarLL(i)">Borrar</button>
+                        <button mat-menu-item (click)="compartirLL(999)">Compartir</button>
+                        <button mat-menu-item (click)="editarLL(999)">Cambiar nombre</button>
+                        <button mat-menu-item (click)="principalLL(999)">Establecer como principal</button>
+                        <button mat-menu-item (click)="borrarLL(999)">Borrar</button>
                     </mat-menu>
                 </div>
             </div>
-            <ng-container *ngIf="listaOthers!=null">
+            <ng-container *ngIf="listas.length>1">
                 <div style="padding-top: 20px; padding-bottom: 20px;">
                     <h3>Otras listas</h3>
                 </div>
             </ng-container>
         </ng-container>
         <div>
-            <ng-container *ngIf="listaOthers!=null">
+            <ng-container *ngIf="listas.length>1">
+              <ng-container *ngFor="let lista of listaOthers; let i=index">
 
                 <div style="display: flex; justify-content: space-between;">
                     <div style="display: flex; flex-direction: column; gap: 2px;">
-                        <h4>{{listO.lista}}</h4>
+                        <h4>{{lista.lista}}</h4>
                         <p>{{cItems}} artículos</p>
                     </div>
                     <div>
@@ -43,6 +44,8 @@
                         </mat-menu>
                     </div>
                 </div>
+              </ng-container>
+
             </ng-container>
         </div>
     </ng-container>

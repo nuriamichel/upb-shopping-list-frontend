@@ -38,7 +38,7 @@ export class SidebarComponent implements OnInit {
   cItems: number = 0;
 
   listaPrinc!:List
-  listaOthers?:List[]
+  listaOthers?:List[]= []
 
   listas: Array<ListaDeListas> = [
     {
@@ -63,10 +63,11 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     if (localStorage.getItem('logged') == "true") {
       this.getListaPrincipal(localStorage.getItem('mail')!)
-      // this.getListOther(localStorage.getItem('mail')!)
+      this.getListOther(localStorage.getItem('mail')!)
     }
 
   }
+
 
   newList(): void {
     console.log('NUEVA LISTA')
@@ -79,9 +80,20 @@ export class SidebarComponent implements OnInit {
       console .log('The dialog was closed');
       this.animal = result;
       console.log(this.animal)
-      this.listas.push({ nombre: this.animal, cantItems: this.cItems });
+      //this.listas.push({ nombre: this.animal, cantItems: this.cItems });
+      this.addList(localStorage.getItem('mail')!, this.animal)
+
     });
   }
+
+  addList(email:string, name:string){
+    this.usersService.addList(email, name)
+      .subscribe(res => {
+        console.log(res)
+
+      })
+  }
+
 
   compartirLL(i: number) {
     console.log('COMPARTIR LL')
@@ -121,7 +133,7 @@ export class SidebarComponent implements OnInit {
       .subscribe(res => {
         console.log(res)
         // @ts-ignore
-        this.listaPrinc = res
+        this.listaPrinc =  res
 
 
       })
@@ -134,7 +146,7 @@ export class SidebarComponent implements OnInit {
         if (res != null) {
 
         // @ts-ignore
-        this.listaOthers = res
+        this.listaOthers =  res
       }
 
       })

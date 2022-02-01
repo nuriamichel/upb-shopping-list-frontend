@@ -49,5 +49,7 @@ export class UsersService {
     return this.http.get(`${this.url}getListas.php`, {params: {email: email}});
   }
 
-
+  addList(email:string, name:string){
+    return this.http.get(`${this.url}newList.php`, {params: {email: email, name: name}});
+  }
 }
