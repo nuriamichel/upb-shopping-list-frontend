@@ -45,6 +45,9 @@ export class UsersService {
   getLists(email:string){
     return this.http.get(`${this.url}getListaPrincipal.php`, {params: {email: email}});
   }
+  getListsOther(email:string){
+    return this.http.get(`${this.url}getListas.php`, {params: {email: email}});
+  }
 
 
 }

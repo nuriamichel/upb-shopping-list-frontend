@@ -38,6 +38,7 @@ export class SidebarComponent implements OnInit {
   cItems: number = 0;
 
   listaPrinc!:List
+  listaOthers?:List[]
 
   listas: Array<ListaDeListas> = [
     {
@@ -60,7 +61,11 @@ export class SidebarComponent implements OnInit {
   constructor(private usersService: UsersService,public dialog: MatDialog, private _router: Router) { }
 
   ngOnInit(): void {
-    this.getListaPrincipal(localStorage.getItem('mail')!)
+    if (localStorage.getItem('logged') == "true") {
+      this.getListaPrincipal(localStorage.getItem('mail')!)
+      // this.getListOther(localStorage.getItem('mail')!)
+    }
+
   }
 
   newList(): void {
@@ -118,6 +123,19 @@ export class SidebarComponent implements OnInit {
         // @ts-ignore
         this.listaPrinc = res
 
+
+      })
+  }
+
+  getListOther(mail:string){
+    this.usersService.getListsOther(mail)
+      .subscribe(res => {
+        console.log(res)
+        if (res != null) {
+
+        // @ts-ignore
+        this.listaOthers = res
+      }
 
       })
   }

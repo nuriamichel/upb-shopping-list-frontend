@@ -1,6 +1,6 @@
 <div>
-    <ng-container *ngFor="let lista of listas; let i=index">
-        <ng-container *ngIf="i==0">
+    <ng-container *ngFor="let listO of listaOthers; let i=index">
+        <ng-container *ngIf="true">
             <div style="padding-bottom: 20px;">
                 <h3>Lista principal</h3>
             </div>
@@ -19,19 +19,19 @@
                     </mat-menu>
                 </div>
             </div>
-            <ng-container *ngIf="listas.length>1">
+            <ng-container *ngIf="listaOthers!=null">
                 <div style="padding-top: 20px; padding-bottom: 20px;">
                     <h3>Otras listas</h3>
                 </div>
             </ng-container>
         </ng-container>
         <div>
-            <ng-container *ngIf="i>0">
+            <ng-container *ngIf="listaOthers!=null">
 
                 <div style="display: flex; justify-content: space-between;">
                     <div style="display: flex; flex-direction: column; gap: 2px;">
-                        <h4>{{lista.nombre}}</h4>
-                        <p>{{lista.cantItems}} artículos</p>
+                        <h4>{{listO.lista}}</h4>
+                        <p>{{cItems}} artículos</p>
                     </div>
                     <div>
                         <i class="fas fa-solid fa-angle-down" [matMenuTriggerFor]="menu"></i>

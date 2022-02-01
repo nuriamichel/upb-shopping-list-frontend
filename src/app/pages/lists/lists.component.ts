@@ -66,8 +66,9 @@ export class ListsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('logged') == "true"){
     this.getProducts(localStorage.getItem('mail')!, localStorage.getItem('lista')!)
-    this.getProductsBuyed(localStorage.getItem('mail')!, localStorage.getItem('lista')!)
+    this.getProductsBuyed(localStorage.getItem('mail')!, localStorage.getItem('lista')!)}
   }
 
   form: FormGroup = new FormGroup({
