@@ -133,7 +133,9 @@ export class SidebarComponent implements OnInit {
     console.log('BORRAR LL')
     // @ts-ignore
     this.delList(this.listaOthers[i].id)
-    
+    this.getListaPrincipal(localStorage.getItem('mail')!)
+    this.getListOther(localStorage.getItem('mail')!)
+
   }
 
 
