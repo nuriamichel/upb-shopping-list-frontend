@@ -4,9 +4,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatFormField } from '@angular/material/form-field';
 import { DialogComponent } from './dialog/dialog.component';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
-import {UsersService} from "../../services/users.service";
-import {List} from "../../models/list";
+import { UsersService } from "../../services/users.service";
+import { List } from "../../models/list";
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { tap } from 'rxjs/operators';
 
 
 export interface ListaDeListas {
@@ -28,6 +31,11 @@ export interface DialogData {
 
 })
 export class SidebarComponent implements OnInit {
+
+  listaP$: Observable<List> | undefined
+
+  listasSuscribe: any[]
+  listasLoaded: boolean
 
   animal!: string;
   name!: string;
@@ -58,7 +66,10 @@ export class SidebarComponent implements OnInit {
 
 
 
-  constructor(private usersService: UsersService,public dialog: MatDialog, private _router: Router) { }
+  constructor(private usersService: UsersService, public dialog: MatDialog, private _router: Router) {
+    this.listasSuscribe = [];
+    this.listasLoaded = false;
+  }
 
   ngOnInit(): void {
     if (localStorage.getItem('logged') == "true") {
@@ -67,6 +78,15 @@ export class SidebarComponent implements OnInit {
       this.getListOther(localStorage.getItem('mail')!)
     }
 
+
+
+  }
+
+  getListasAsyncPipe() {
+    /*this.listaP$ = this.usersService.getLists('mail')
+      .pipe(tap(res => {
+        console.log('res', res);
+      }))*/
   }
 
 
@@ -78,7 +98,7 @@ export class SidebarComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console .log('The dialog was closed');
+      console.log('The dialog was closed');
       this.animal = result;
       console.log(this.animal)
       //this.listas.push({ nombre: this.animal, cantItems: this.cItems });
@@ -89,7 +109,7 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  addList(email:string, name:string){
+  addList(email: string, name: string) {
     this.usersService.addList(email, name)
       .subscribe(res => {
         console.log(res)
@@ -147,15 +167,26 @@ export class SidebarComponent implements OnInit {
   }
 
 
+  getListasSuscribe(email: string) {
+    this.listasLoaded = false;
+    this.usersService.getListsOther(email).subscribe(res => {
+      //this.listasSuscribe = res
+      this.listasLoaded = true
+      console.log('res', res)
+
+    });
+  }
+
   async getListaPrincipal(mail:string){
     this.usersService.getLists(mail)
       .subscribe(res => {
         console.log(res)
         // @ts-ignore
-        this.listaPrinc =  res
+        this.listaPrinc = res
 
 
       })
+      
   }
 
   async getListOther(mail:string){
@@ -164,9 +195,9 @@ export class SidebarComponent implements OnInit {
         console.log(res)
         if (res != null) {
 
-        // @ts-ignore
-        this.listaOthers =  res
-      }
+          // @ts-ignore
+          this.listaOthers = res
+        }
 
       })
   }
