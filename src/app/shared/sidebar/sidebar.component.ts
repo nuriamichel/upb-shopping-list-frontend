@@ -31,40 +31,13 @@ export class SidebarComponent implements OnInit {
     }
   ];
 
-  constructor(public dialog: MatDialog) { }
-
-  animal!: string;
-  name!: string;
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogNuevaListaDialog, {
-      width: '250px',
-      data: { name: this.name, animal: this.animal },
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
-    });
-  }
-
-}
-/*******************************************************************/
-
-@Component({
-  selector: 'dialog-nueva-lista-dialog',
-  templateUrl: 'dialog-nueva-lista-dialog.html',
-})
-export class DialogNuevaListaDialog {
-  constructor(public dialogRef: MatDialogRef<DialogNuevaListaDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: ListaDeListas) {
-
-  }
-  onNoClick(): void {
-    this.dialogRef.close();
+  newList() {
+    console.log('NUEVA LISTA')
   }
 
 }
