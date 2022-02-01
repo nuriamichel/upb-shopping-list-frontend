@@ -6,8 +6,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCommonModule } from '@angular/material/core';
+import { MatCommonModule, MatNativeDateModule } from '@angular/material/core';
 import { DialogModule } from './dialog/dialog.module';
+import { HttpClientModule } from '@angular/common/http';
+import { MatMenuModule } from '@angular/material/menu';
+import { EditDialogModule } from './edit-dialog/edit-dialog.module';
 
 
 
@@ -23,7 +26,11 @@ import { DialogModule } from './dialog/dialog.module';
     MatCommonModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatNativeDateModule,
+    HttpClientModule,
+    MatMenuModule,
+    EditDialogModule
   ],
   exports: [
     SidebarComponent
