@@ -116,10 +116,6 @@ export class ListsComponent implements OnInit {
     if (valid) {
       console.log('FORM VALUE: ', arti);
       this.modProduct = new Product(Number(localStorage.getItem('numList')!), this.formList.value.nombre, false, this.formList.value.precio)
-      this.productos.push(arti)
-      this.table.renderRows();
-      console.log(this.productos)
-      this.formList.reset();
 
 
       //add product
@@ -127,6 +123,7 @@ export class ListsComponent implements OnInit {
 
       //get products
       this.getProducts(localStorage.getItem('mail')!, localStorage.getItem('lista')!)
+      this.formList.reset();
 
     } else {
       this.formList.markAllAsTouched();
@@ -145,11 +142,10 @@ export class ListsComponent implements OnInit {
     this.usersService.getProducts(mail,list)
       .subscribe(res => {
         console.log(res)
-        if (res != null) {
 
           // @ts-ignore
           this.listProd = res
-        }
+
 
       })
   }
@@ -190,7 +186,7 @@ export class ListsComponent implements OnInit {
       .subscribe(res => {
         console.log(res)
         this.getProducts(localStorage.getItem('mail')!, localStorage.getItem('lista')!)
-
+        this.getProductsBuyed(localStorage.getItem('mail')!, localStorage.getItem('lista')!)
       })
   }
   tachado(index: number) {
