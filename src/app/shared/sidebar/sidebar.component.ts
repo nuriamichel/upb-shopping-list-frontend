@@ -37,7 +37,7 @@ export class SidebarComponent implements OnInit {
 
   cItems: number = 0;
 
-  listaPrinc!:List
+  listaPrinc?:List
   listaOthers?:List[]= []
 
   listas: Array<ListaDeListas> = [
@@ -62,6 +62,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     if (localStorage.getItem('logged') == "true") {
+
       this.getListaPrincipal(localStorage.getItem('mail')!)
       this.getListOther(localStorage.getItem('mail')!)
     }
