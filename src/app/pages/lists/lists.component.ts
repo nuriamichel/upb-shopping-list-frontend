@@ -19,9 +19,6 @@ export class ListsComponent implements OnInit {
   @ViewChild(MatTable)
   table!: MatTable<any>;
 
-  update(row: any): void {
-
-  }
 
 
   @Output() btnClick = new EventEmitter<string>()
@@ -39,7 +36,7 @@ export class ListsComponent implements OnInit {
     }
   ];
 
-  displayedColumns: string[] = ['nombre', 'precio'];
+  displayedColumns: string[] = ['nombre', 'precio', 'options'];
 
   constructor(private _fb: FormBuilder) {
     this.formList = this._fb.group({
@@ -69,6 +66,13 @@ export class ListsComponent implements OnInit {
       this.formList.markAllAsTouched();
     }
     this.formList.reset();
+  }
+
+  removeAt(index: number) {
+    console.log('borrar prod')
+    const data = this.productos.splice(index, 1);
+    
+    this.table.renderRows();
   }
 
 }

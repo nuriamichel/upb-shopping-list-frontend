@@ -10,6 +10,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatTableModule } from "@angular/material/table";
 //import { MatButtonToggleModule } from '@angular/material';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSortModule } from '@angular/material/sort';
 
 const routes: Routes = [
   {
@@ -29,7 +30,8 @@ const routes: Routes = [
     MatIconModule,
     FlexLayoutModule,
     MatTableModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSortModule
   ]
 })
 export class ListsModule { }
