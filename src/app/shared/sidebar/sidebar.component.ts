@@ -82,6 +82,8 @@ export class SidebarComponent implements OnInit {
       console.log(this.animal)
       //this.listas.push({ nombre: this.animal, cantItems: this.cItems });
       this.addList(localStorage.getItem('mail')!, this.animal)
+      this.getListaPrincipal(localStorage.getItem('mail')!)
+      this.getListOther(localStorage.getItem('mail')!)
 
     });
   }
