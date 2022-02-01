@@ -105,21 +105,29 @@ export class ListsComponent implements OnInit {
 
   sendForm() {
     console.log('APRETADO')
-    this.getProducts("rodrigoquiroz308@gmail.com")
+    this.getProducts(localStorage.getItem('mail')!, localStorage.getItem('lista')!)
+
     const valid = this.formList.valid;
     let arti = this.formList.value;
     if (valid) {
       console.log('FORM VALUE: ', arti);
-      this.modProduct = new Product(7, this.formList.value.nombre, false, this.formList.value.precio)
-      this.addProduct(this.modProduct)
+      this.modProduct = new Product(Number(localStorage.getItem('numList')!), this.formList.value.nombre, false, this.formList.value.precio)
       this.productos.push(arti)
       this.table.renderRows();
       console.log(this.productos)
       this.formList.reset();
+
+
+      //add product
+      this.addProduct(this.modProduct)
+
+      //get products
+      this.getProducts(localStorage.getItem('mail')!, localStorage.getItem('lista')!)
+
     } else {
       this.formList.markAllAsTouched();
     }
-    this.formList.reset();
+    this.formList.reset();//poner algo mas interactivo, como que vibre el forms
   }
 
   addProduct(prod:Product){
@@ -129,15 +137,21 @@ export class ListsComponent implements OnInit {
       })
   }
 
-  getProducts(mail:string){
-    this.usersService.getProducts(mail)
+  getProducts(mail:string, list:string){
+    this.usersService.getProducts(mail,list)
       .subscribe(res => {
         console.log(res)
         // @ts-ignore
         this.listProd = res
-        console.log(this.listProd)
-        console.log(this.listProd[0])
-        console.log(this.listProd[0].precio)
+
+
+      })
+  }
+
+  getActList(mail:string, list:string){
+    this.usersService.getActualList(mail,list)
+      .subscribe(res => {
+        console.log(res)
 
       })
   }

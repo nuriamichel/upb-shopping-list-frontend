@@ -24,7 +24,10 @@ export class UsersService {
     return this.http.post(`${this.url}addProduct.php`, prod);
   }
 
-  getProducts(email:string){
-    return this.http.get(`${this.url}getProducts.php`, {params: {email: email}});
+  getProducts(email:string, list:string){
+    return this.http.get(`${this.url}getProducts.php`, {params: {email: email, lista: list}});
+  }
+  getActualList(email:string, list:string){
+    return this.http.get(`${this.url}getActualList.php`, {params: {email: email, lista: list}});
   }
 }
