@@ -16,9 +16,11 @@ export class ListsComponent implements OnInit {
 
   mostrarPrecio: boolean = true;
 
-  @ViewChild(MatTable)
+  @ViewChild('tableOG')
   table!: MatTable<any>;
 
+
+  @ViewChild('tachado') tachadoTable!: MatTable<any>;
 
 
   @Output() btnClick = new EventEmitter<string>()
@@ -31,12 +33,15 @@ export class ListsComponent implements OnInit {
       precio: '10'
     },
     {
-      nombre: 'Coca-Cola',
-      precio: '10'
+      nombre: 'Pepsi',
+      precio: '20'
     }
   ];
 
+  productosTachados: Producto[] = [];
+
   displayedColumns: string[] = ['nombre', 'precio', 'options'];
+  displayedColumnsTachados: string[] = ['nombre', 'precio', 'options'];
 
   constructor(private _fb: FormBuilder) {
     this.formList = this._fb.group({
@@ -68,11 +73,45 @@ export class ListsComponent implements OnInit {
     this.formList.reset();
   }
 
+  tachado(index: number) {
+    console.log('TACHADO');
+    this.productosTachados.push({
+      nombre: this.productos[index].nombre,
+      precio: this.productos[index].precio
+    });
+    this.productos.splice(index, 1);
+    this.table.renderRows();
+    this.tachadoTable.renderRows();
+    console.log(this.productos)
+    console.log(this.productosTachados)
+  }
+
+  destachado(index: number) {
+    this.productos.push({
+      nombre: this.productosTachados[index].nombre,
+      precio: this.productosTachados[index].precio
+    });
+    this.productosTachados.splice(index, 1);
+    this.table.renderRows();
+    this.tachadoTable.renderRows();
+    console.log(this.productos)
+    console.log(this.productosTachados)
+  }
+
   removeAt(index: number) {
     console.log('borrar prod')
-    const data = this.productos.splice(index, 1);
-    
+    this.productos.splice(index, 1);
+
     this.table.renderRows();
+    this.tachadoTable.renderRows();
+  }
+
+  removeAtTachados(index: number) {
+    console.log('borrar prod tachado')
+    this.productosTachados.splice(index, 1);
+
+    this.table.renderRows();
+    this.tachadoTable.renderRows();
   }
 
 }

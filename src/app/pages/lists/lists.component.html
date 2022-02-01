@@ -20,7 +20,7 @@
 </div>
 
 <div style="padding-left: 430px; padding-right: 430px;">
-    <table mat-table [dataSource]="productos" class="mat-elevation-z8">
+    <table mat-table #tableOG [dataSource]="productos" class="mat-elevation-z8">
         <ng-container matColumnDef="nombre">
             <th mat-header-cell *matHeaderCellDef>Artículo</th>
             <td mat-cell *matCellDef="let item">{{item.nombre}}</td>
@@ -28,11 +28,14 @@
         <ng-container matColumnDef="precio">
             <th mat-header-cell *matHeaderCellDef>Precio</th>
             <td mat-cell *matCellDef="let item">Bs. {{item.precio}}</td>
-            <button>Borrar</button>
+
         </ng-container>
         <ng-container matColumnDef="options">
             <th mat-header-cell *matHeaderCellDef>Options</th>
             <td mat-cell *matCellDef="let score; let i = index;">
+                <button mat-icon-button (click)="tachado(i)" matTooltip="Remove this score">
+                    <mat-icon>check</mat-icon>
+                </button>
                 <button mat-icon-button (click)="removeAt(i)" matTooltip="Remove this score">
                     <mat-icon>clear</mat-icon>
                 </button>
@@ -42,3 +45,35 @@
         <tr mat-row *matRowDef="let row; columns:displayedColumns"></tr>
     </table>
 </div>
+
+
+<hr>
+
+
+<ng-container *ngIf="productosTachados.length>0">
+    <div style="padding-left: 430px; padding-right: 430px;">
+        <table mat-table  #tachado [dataSource]="productosTachados" class="mat-elevation-z8">
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef>Artículo</th>
+                <td mat-cell *matCellDef="let item" style="text-decoration: line-through;">{{item.nombre}}</td>
+            </ng-container>
+            <ng-container matColumnDef="precio">
+                <th mat-header-cell *matHeaderCellDef>Precio</th>
+                <td mat-cell *matCellDef="let item" style="text-decoration: line-through;">Bs. {{item.precio}}</td>
+            </ng-container>
+            <ng-container matColumnDef="options">
+                <th mat-header-cell *matHeaderCellDef>Options</th>
+                <td mat-cell *matCellDef="let score; let i = index;">
+                    <button mat-icon-button (click)="destachado(i)" matTooltip="Remove this score">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="removeAtTachados(i)" matTooltip="Remove this score">
+                        <mat-icon>clear</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsTachados"></tr>
+            <tr mat-row *matRowDef="let row; columns:displayedColumnsTachados"></tr>
+        </table>
+    </div>
+</ng-container>
