@@ -29,6 +29,7 @@ export class ListsComponent implements OnInit {
   mostrarPrecio: boolean = true;
   modProduct? : Product
   listProd:Product[]=[]
+  listProdTached:Product[]=[]
 
   @ViewChild('tableOG')
   table!: MatTable<any>;
@@ -65,6 +66,8 @@ export class ListsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getProducts(localStorage.getItem('mail')!, localStorage.getItem('lista')!)
+    this.getProductsBuyed(localStorage.getItem('mail')!, localStorage.getItem('lista')!)
   }
 
   form: FormGroup = new FormGroup({
@@ -106,6 +109,7 @@ export class ListsComponent implements OnInit {
   sendForm() {
     console.log('APRETADO')
     this.getProducts(localStorage.getItem('mail')!, localStorage.getItem('lista')!)
+    this.getProductsBuyed(localStorage.getItem('mail')!, localStorage.getItem('lista')!)
 
     const valid = this.formList.valid;
     let arti = this.formList.value;
@@ -148,6 +152,17 @@ export class ListsComponent implements OnInit {
       })
   }
 
+  getProductsBuyed(mail:string, list:string){
+    this.usersService.getProductsTached(mail,list)
+      .subscribe(res => {
+        console.log(res)
+        // @ts-ignore
+        this.listProdTached = res
+
+
+      })
+  }
+
   getActList(mail:string, list:string){
     this.usersService.getActualList(mail,list)
       .subscribe(res => {
@@ -155,17 +170,30 @@ export class ListsComponent implements OnInit {
 
       })
   }
+
+  delProduct(id:number){
+    this.usersService.delProd(id)
+      .subscribe(res => {
+        console.log(res)
+        this.getProducts(localStorage.getItem('mail')!, localStorage.getItem('lista')!)
+
+      })
+  }
+
+  updProduct(id:number){
+    this.usersService.updateProd(id)
+      .subscribe(res => {
+        console.log(res)
+        this.getProducts(localStorage.getItem('mail')!, localStorage.getItem('lista')!)
+
+      })
+  }
   tachado(index: number) {
     console.log('TACHADO');
-    this.productosTachados.push({
-      nombre: this.productos[index].nombre,
-      precio: this.productos[index].precio
-    });
-    this.productos.splice(index, 1);
-    this.table.renderRows();
-    this.tachadoTable.renderRows();
-    console.log(this.productos)
-    console.log(this.productosTachados)
+
+    console.log(this.listProd[index])
+    // @ts-ignore
+    this.updProduct(this.listProd[index].id)
   }
 
   destachado(index: number) {
@@ -182,10 +210,11 @@ export class ListsComponent implements OnInit {
 
   removeAt(index: number) {
     console.log('borrar prod')
-    this.productos.splice(index, 1);
 
-    this.table.renderRows();
-    this.tachadoTable.renderRows();
+
+    console.log(this.listProd[index])
+    // @ts-ignore
+    this.delProduct(this.listProd[index].id)
   }
 
   removeAtTachados(index: number) {
