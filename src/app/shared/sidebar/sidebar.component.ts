@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatFormField } from '@angular/material/form-field';
 import { DialogComponent } from './dialog/dialog.component';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
+import {UsersService} from "../../services/users.service";
+import {List} from "../../models/list";
 
 
 export interface ListaDeListas {
@@ -20,7 +22,9 @@ export interface DialogData {
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.css'],
+  providers: [UsersService]
+
 })
 export class SidebarComponent implements OnInit {
 
@@ -31,6 +35,8 @@ export class SidebarComponent implements OnInit {
   name2!: string;
 
   cItems: number = 0;
+
+  listaPrinc!:List
 
   listas: Array<ListaDeListas> = [
     {
@@ -49,9 +55,10 @@ export class SidebarComponent implements OnInit {
 
 
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private usersService: UsersService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.getListaPrincipal(localStorage.getItem('mail')!)
   }
 
   newList(): void {
@@ -62,7 +69,7 @@ export class SidebarComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console .log('The dialog was closed');
       this.animal = result;
       console.log(this.animal)
       this.listas.push({ nombre: this.animal, cantItems: this.cItems });
@@ -100,6 +107,17 @@ export class SidebarComponent implements OnInit {
     this.listas.splice(i, 1);
   }
 
+
+  getListaPrincipal(mail:string){
+    this.usersService.getLists(mail)
+      .subscribe(res => {
+        console.log(res)
+        // @ts-ignore
+        this.listaPrinc = res
+
+
+      })
+  }
 }
 
 

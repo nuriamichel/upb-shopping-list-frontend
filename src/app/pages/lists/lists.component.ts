@@ -145,9 +145,11 @@ export class ListsComponent implements OnInit {
     this.usersService.getProducts(mail,list)
       .subscribe(res => {
         console.log(res)
-        // @ts-ignore
-        this.listProd = res
+        if (res != null) {
 
+          // @ts-ignore
+          this.listProd = res
+        }
 
       })
   }
@@ -156,8 +158,11 @@ export class ListsComponent implements OnInit {
     this.usersService.getProductsTached(mail,list)
       .subscribe(res => {
         console.log(res)
-        // @ts-ignore
-        this.listProdTached = res
+        if (res != null){
+          // @ts-ignore
+          this.listProdTached = res
+
+        }
 
 
       })
